@@ -15,11 +15,22 @@
 * Brackets
 * Properties and parameters
 
-## Installation
+## Installation from GitHub
 
-1. Open Visual Studio Code.
-2. Press `Ctrl+P` or `Cmd+P` (Mac) to open the Quick Open dialog.
-3. Type `ext install fresh-milkshake.qml-vscode` and press `Enter`.
+1. Clone the repository to your local machine:
+   
+   ```
+   git clone https://github.com/fresh-milkshake/qml-vscode.git
+   ```
+
+2. Copy the `qml-vscode` folder to your Visual Studio Code extensions folder:
+   
+   * On Windows: `%USERPROFILE%\.vscode\extensions`
+   * On macOS: `$HOME/.vscode/extensions`
+   * On Linux: `$HOME/.vscode/extensions`
+
+3. Restart Visual Studio Code.
+
 4. After installation, the extension will automatically highlight QML files.
 
 ## Usage
