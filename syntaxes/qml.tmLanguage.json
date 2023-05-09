@@ -1,0 +1,204 @@
+{
+    "name": "QML",
+    "scopeName": "source.qml",
+    "fileTypes": [
+        "qml"
+    ],
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#identifiers"
+        },
+        {
+            "include": "#punctuation"
+        },
+        {
+            "include": "#brackets"
+        },
+        {
+            "include": "#properties"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.qml",
+                    "match": "//.*$"
+                },
+                {
+                    "begin": "/\\*",
+                    "end": "\\*/",
+                    "name": "comment.block.qml"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.qml",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "match": "\\\\[\"\\\\/bfnrt]",
+                            "name": "constant.character.escape.qml"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.qml",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "match": "\\\\[\"\\\\/bfnrt]",
+                            "name": "constant.character.escape.qml"
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.qml",
+                    "match": "\\b(0[xX][0-9a-fA-F]+|\\d+(\\.\\d+)?([eE][+-]?\\d+)?)\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.qml",
+                    "match": "\\b(import|as|on)\\b"
+                },
+                {
+                    "name": "keyword.storage.qml",
+                    "match": "\\b(property|signal|slot|function|var|let|readonly|alias|default)\\b"
+                },
+                {
+                    "name": "keyword.constant.qml",
+                    "match": "\\b(true|false|null)\\b"
+                }
+            ]
+        },
+        "identifiers": {
+            "patterns": [
+                {
+                    "name": "entity.name.type.qml",
+                    "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+                },
+                {
+                    "name": "variable.other.qml",
+                    "match": "\\b[a-z_][A-Za-z0-9_]*\\b"
+                }
+            ]
+        },
+        "punctuation": {
+            "patterns": [
+                {
+                    "name": "punctuation.separator.qml",
+                    "match": "\\."
+                },
+                {
+                    "name": "punctuation.operator.assignment.qml",
+                    "match": "="
+                },
+                {
+                    "name": "punctuation.operator.comparison.qml",
+                    "match": "!=|==|<=|>=|<|>"
+                },
+                {
+                    "name": "punctuation.operator.arithmetic.qml",
+                    "match": "\\+\\+|\\-\\-|\\+|\\-|\\*|\\/|%"
+                },
+                {
+                    "name": "punctuation.operator.logical.qml",
+                    "match": "&&|\\|\\||!|~"
+                },
+                {
+                    "name": "punctuation.operator.bitwise.qml",
+                    "match": "\\^|&|\\|"
+                },
+                {
+                    "name": "punctuation.terminator.qml",
+                    "match": ";"
+                },
+                {
+                    "name": "punctuation.delimiter.qml",
+                    "match": ","
+                },
+                {
+                    "name": "punctuation.accessor.qml",
+                    "match": "\\?"
+                },
+                {
+                    "name": "punctuation.separator.key-value.qml",
+                    "match": ":"
+                }
+            ],
+            "brackets": {
+                "patterns": [
+                    {
+                        "name": "punctuation.section.array.qml",
+                        "begin": "\\[",
+                        "end": "\\]",
+                        "patterns": [
+                            {
+                                "include": "#patterns"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "punctuation.section.object.qml",
+                        "begin": "\\{",
+                        "end": "\\}",
+                        "patterns": [
+                            {
+                                "include": "#patterns"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "punctuation.section.xml.qml",
+                        "begin": "<",
+                        "end": ">",
+                        "patterns": [
+                            {
+                                "include": "source.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "properties": {
+                "patterns": [
+                    {
+                        "name": "entity.name.property.qml",
+                        "match": "\\b(?:id|property|signal|slot|function|readonly|alias|default)\\s+\\w+\\b"
+                    },
+                    {
+                        "name": "variable.parameter.qml",
+                        "match": "\\b\\w+\\s*:"
+                    },
+                    {
+                        "name": "variable.parameter.type.qml",
+                        "match": "\\b(?:int|real|string|bool|color|date|url|var|let)\\b"
+                    }
+                ]
+            }
+        }
+    }
+}

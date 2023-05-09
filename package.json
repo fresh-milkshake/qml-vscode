@@ -1,0 +1,38 @@
+{
+    "name": "qml-lang",
+    "displayName": "QML",
+    "description": "Syntax highlighting for QML Language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.48.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "icon": "images/qml.png",
+    "repository": "https://github.com/fresh-milkshake/qml-lang",
+    "publisher": "Fresh Milkshake",
+    "contributes": {
+        "languages": [
+            {
+                "id": "QML",
+                "aliases": [
+                    "QML",
+                    "qml",
+                    "Qml"
+                ],
+                "extensions": [
+                    ".qml"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "QML",
+                "scopeName": "source.qml",
+                "path": "./syntaxes/qml.tmLanguage.json"
+            }
+        ]
+    }
+}
