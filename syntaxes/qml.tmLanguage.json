@@ -9,6 +9,57 @@
             "include": "#comments"
         },
         {
+            "include": "#imports"
+        },
+        {
+            "include": "#qml-elements"
+        },
+        {
+            "include": "#property-definitions"
+        },
+        {
+            "include": "#property-bindings"
+        },
+        {
+            "include": "#signal-handlers"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#javascript-blocks"
+        },
+        {
+            "include": "#special-properties"
+        },
+        {
+            "include": "#anchor-properties"
+        },
+        {
+            "include": "#font-properties"
+        },
+        {
+            "include": "#color-properties"
+        },
+        {
+            "include": "#states-transitions"
+        },
+        {
+            "include": "#gradients"
+        },
+        {
+            "include": "#easing-curves"
+        },
+        {
+            "include": "#pragma-directives"
+        },
+        {
+            "include": "#component-definitions"
+        },
+        {
+            "include": "#enum-definitions"
+        },
+        {
             "include": "#strings"
         },
         {
@@ -18,29 +69,360 @@
             "include": "#keywords"
         },
         {
-            "include": "#identifiers"
+            "include": "#built-in-functions"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#operators"
         },
         {
             "include": "#punctuation"
         },
         {
             "include": "#brackets"
-        },
-        {
-            "include": "#properties"
         }
     ],
     "repository": {
         "comments": {
             "patterns": [
                 {
-                    "name": "comment.line.qml",
+                    "name": "comment.line.double-slash.qml",
                     "match": "//.*$"
                 },
                 {
                     "begin": "/\\*",
                     "end": "\\*/",
                     "name": "comment.block.qml"
+                }
+            ]
+        },
+        "imports": {
+            "patterns": [
+                {
+                    "name": "meta.import.qml",
+                    "begin": "\\b(import)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.import.qml"
+                        }
+                    },
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "entity.name.namespace.qml",
+                            "match": "\\b[A-Za-z][A-Za-z0-9_.]*\\b"
+                        },
+                        {
+                            "name": "constant.numeric.version.qml",
+                            "match": "\\b\\d+(\\.\\d+)*\\b"
+                        },
+                        {
+                            "name": "keyword.control.as.qml",
+                            "match": "\\bas\\b"
+                        },
+                        {
+                            "name": "entity.name.type.alias.qml",
+                            "match": "\\b[A-Za-z][A-Za-z0-9_]*\\b(?=\\s*$)"
+                        }
+                    ]
+                }
+            ]
+        },
+        "qml-elements": {
+            "patterns": [
+                {
+                    "name": "entity.name.type.qml-element.basic.qml",
+                    "match": "\\b(ApplicationWindow|Window|Item|Rectangle|Text|Button|Column|Row|Grid|GridLayout|ColumnLayout|RowLayout|ListView|GridView|ScrollView|Flickable|Image|MouseArea|Timer|Loader|Repeater|Component|Connections|Binding|State|Transition|Animation|PropertyAnimation|NumberAnimation|ColorAnimation|RotationAnimation|ScaleAnimation|ParallelAnimation|SequentialAnimation|PathAnimation|SmoothedAnimation|SpringAnimation|Vector3dAnimation|Behavior|PropertyAction|ScriptAction|ParentAction|PauseAnimation)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.controls.qml",
+                    "match": "\\b(GroupBox|ComboBox|CheckBox|RadioButton|Slider|SpinBox|TextField|TextArea|ProgressBar|BusyIndicator|Label|ToolButton|MenuBar|Menu|MenuItem|Dialog|Popup|Drawer|SwipeView|TabBar|TabButton|Page|PageIndicator|RangeSlider|RoundButton|Switch|ToolBar|ToolSeparator|DelayButton|Dial|Frame|Pane|ScrollIndicator|SplitView|StackView|Tumbler|Action|ButtonGroup|Shortcut|Control|Container|Overlay|Platform|SystemTrayIcon|MenuSeparator|SystemPalette|Screen|Clipboard|FileIO|Process|Settings)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.layouts.qml",
+                    "match": "\\b(Layout|Flow|Positioner|Anchors|AnchorAnimation|AnchorChanges)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.visual.qml",
+                    "match": "\\b(Canvas|Context2D|CanvasImageData|CanvasPixelArray|CanvasGradient|CanvasPattern|Path|PathView|PathLine|PathQuad|PathCubic|PathArc|PathAngleArc|PathCurve|PathSvg|PathAttribute|PathPercent|Shape|ShapePath|BorderImage|AnimatedImage|AnimatedSprite|SpriteSequence|TextInput|TextEdit)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.handlers.qml",
+                    "match": "\\b(DragHandler|PinchHandler|PointHandler|TapHandler|HoverHandler|WheelHandler|MultiPointTouchArea|PinchArea)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.animation.qml",
+                    "match": "\\b(Animator|OpacityAnimator|ScaleAnimator|RotationAnimator|XAnimator|YAnimator|UniformAnimator|PropertyAnimator|ColorAnimator|Vector3dAnimator|QuaternionAnimator|Matrix4x4Animator|RectAnimator|PointAnimator|SizeAnimator|FontAnimator|UrlAnimator|StateGroup|StateChangeScript|AnchorChanges|ParentChange|PropertyChanges)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.effects.qml",
+                    "match": "\\b(Blur|ColorOverlay|Colorize|ConicalGradient|Desaturate|DirectionalBlur|Displace|DropShadow|FastBlur|GammaAdjust|GaussianBlur|Glow|HueSaturation|InnerShadow|LinearGradient|LevelAdjust|MaskedBlur|OpacityMask|RadialBlur|RadialGradient|RectangularGlow|RecursiveBlur|ThresholdMask|ZoomBlur|Blend|BrightnessContrast|Saturate)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.particles.qml",
+                    "match": "\\b(ParticleSystem|Emitter|ImageParticle|ItemParticle|Age|Affector|Attractor|Friction|Gravity|GroupGoal|SpriteGoal|Turbulence|Wander|PointDirection|AngleDirection|TargetDirection|CumulativeDirection|EllipseShape|LineShape|MaskShape|RectangleShape|TrailEmitter|ParticleGroup|ParticlePainter|CustomParticle|Particle|ParticleExtruder|ParticleAffector|ParticleDirection|ParticleShape)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.multimedia.qml",
+                    "match": "\\b(Audio|Video|MediaPlayer|Camera|VideoOutput|SoundEffect|Playlist|QtMultimedia|AudioEngine|AudioCategory|AudioSample|Sound|SoundInstance|AttenuationModelLinear|AttenuationModelInverse|AudioListener)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.sensors.qml",
+                    "match": "\\b(Accelerometer|AccelerometerReading|Altimeter|AltimeterReading|AmbientLightSensor|AmbientLightReading|AmbientTemperatureSensor|AmbientTemperatureReading|Compass|CompassReading|Gyroscope|GyroscopeReading|HolsterSensor|HolsterReading|HumiditySensor|HumidityReading|IRProximitySensor|IRProximityReading|LightSensor|LightReading|Magnetometer|MagnetometerReading|OrientationSensor|OrientationReading|PressureSensor|PressureReading|ProximitySensor|ProximityReading|RotationSensor|RotationReading|TapSensor|TapReading|TiltSensor|TiltReading|Sensor|SensorReading|SensorGesture|SensorGestureRecognizer)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.positioning.qml",
+                    "match": "\\b(Position|PositionSource|Address|Location|GeocodeModel|RouteModel|RouteQuery|Route|RouteSegment|RouteManeuver|MapGestureArea|MapItemView|MapCircle|MapPolygon|MapPolyline|MapRectangle|MapQuickItem|MapType|Plugin|PluginParameter|Map|MapPinchEvent|MapMouseEvent|MapParameter|MapItemGroup|MapIcon|MapRoute)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.webengine.qml",
+                    "match": "\\b(WebEngineView|WebEngineScript|WebEngineProfile|WebEngineSettings|WebEngineHistory|WebEngineHistoryListModel|WebEngineDownloadItem|WebEngineFullScreenRequest|WebEngineNavigationRequest|WebEngineNewViewRequest|WebEngineQuotaRequest|WebEngineRegisterProtocolHandlerRequest|WebEngineAction|WebEngineContextMenuData|WebEngineLoadRequest|WebEngineNotification|WebEnginePermissionRequest|WebEngineAuthenticationDialogRequest|WebEngineColorDialogRequest|WebEngineFileDialogRequest|WebEngineFormValidationMessageRequest|WebEngineJavaScriptDialogRequest|WebEngineTooltipRequest)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.test.qml",
+                    "match": "\\b(TestCase|TestResult|SignalSpy|TestEvent|TestUtil)\\b"
+                },
+                {
+                    "name": "entity.name.type.qml-element.labs.qml",
+                    "match": "\\b(Calendar|CalendarModel|DayOfWeekRow|MonthGrid|WeekNumberColumn|TreeViewDelegate|FolderListModel|FileSystemModel|StandardPaths|MenuBarItem|FolderDialog)\\b"
+                }
+            ]
+        },
+        "javascript-blocks": {
+            "patterns": [
+                {
+                    "name": "meta.embedded.block.javascript.qml",
+                    "begin": "\\{",
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "source.js"
+                        },
+                        {
+                            "include": "#all-patterns"
+                        }
+                    ]
+                }
+            ]
+        },
+        "property-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.property.qml",
+                    "begin": "\\b(property|readonly\\s+property|default\\s+property|required\\s+property|alias)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.property.qml"
+                        }
+                    },
+                    "end": "(?=\\s*[:;])",
+                    "patterns": [
+                        {
+                            "name": "storage.type.property.qml",
+                            "match": "\\b(alias|bool|color|date|double|enumeration|font|int|list|real|string|url|var|variant|vector2d|vector3d|vector4d|quaternion|matrix4x4|size|point|rect|QtObject|Component|Item|Rectangle|Text|Image|Button|Timer|Animation|PropertyAnimation|NumberAnimation|ColorAnimation|RotationAnimation|ScaleAnimation|ParallelAnimation|SequentialAnimation|PathAnimation|SmoothedAnimation|SpringAnimation|Vector3dAnimation|Behavior|PropertyAction|ScriptAction|ParentAction|PauseAnimation|Transition|State|PropertyChanges|AnchorChanges|ParentChange|StateChangeScript|AnchorAnimation|ParentAnimation|Connections|Binding|Loader|Repeater|MouseArea|Flickable|MultiPointTouchArea|PinchArea|ListView|GridView|PathView|ScrollView|SwipeView|StackView|TabBar|TabButton|Page|Pane|Frame|GroupBox|ScrollBar|ScrollIndicator|ProgressBar|BusyIndicator|Slider|RangeSlider|Dial|SpinBox|Tumbler|ComboBox|TextField|TextArea|Button|RoundButton|ToolButton|CheckBox|RadioButton|Switch|DelayButton|ItemDelegate|SwipeDelegate|CheckDelegate|RadioDelegate|SwitchDelegate|MenuBar|ToolBar|ToolSeparator|Label|PageIndicator|Control|Container|Overlay|Shortcut|Action|ButtonGroup|Column|Row|Grid|GridLayout|ColumnLayout|RowLayout|Flow|Positioner|Canvas|Context2D|Path|PathView|PathLine|PathQuad|PathCubic|PathArc|PathAngleArc|PathCurve|PathSvg|PathAttribute|PathPercent|Shape|ShapePath|BorderImage|AnimatedImage|AnimatedSprite|SpriteSequence|TextInput|TextEdit|Gradient|GradientStop|LinearGradient|RadialGradient|ConicalGradient|Rotation|Scale|Translate|Matrix4x4|ListModel|ListElement|XmlListModel|XmlRole|WorkerScript|FolderListModel|FileSystemModel|Settings|SystemPalette|Platform|ColorDialog|FileDialog|FontDialog|MessageDialog|StandardPaths|SystemTrayIcon|Menu|MenuItem|MenuSeparator|MenuBarItem|FolderDialog|Dialog|Popup|Drawer|ToolTip|ApplicationWindow|Window|DragHandler|PinchHandler|PointHandler|TapHandler|HoverHandler|WheelHandler|Drag|DropArea|DragEvent|DropEvent|MimeData|Keys|KeyEvent|MouseEvent|WheelEvent|TouchEvent|GestureEvent|CloseEvent|HoverEvent|FocusEvent|InputMethodEvent|KeyNavigation|FocusScope|Accessible|Screen)\\b"
+                        },
+                        {
+                            "name": "entity.name.property.qml",
+                            "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.signal.qml",
+                    "begin": "\\b(signal)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.signal.qml"
+                        }
+                    },
+                    "end": "(?=\\s*[;({])",
+                    "patterns": [
+                        {
+                            "name": "entity.name.signal.qml",
+                            "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.function.qml",
+                    "begin": "\\b(function)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.function.qml"
+                        }
+                    },
+                    "end": "(?=\\s*\\()",
+                    "patterns": [
+                        {
+                            "name": "entity.name.function.qml",
+                            "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "property-bindings": {
+            "patterns": [
+                {
+                    "name": "meta.property-binding.id.qml",
+                    "begin": "\\b(id)\\s*:",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "variable.language.id.qml"
+                        }
+                    },
+                    "end": "(?=[;}]|$)",
+                    "patterns": [
+                        {
+                            "name": "entity.name.id.qml",
+                            "match": "\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*",
+                            "captures": {
+                                "1": {
+                                    "name": "entity.name.id.qml"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "variable.other.object.qml",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\.)"
+                },
+                {
+                    "name": "support.function.method.qml",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\.\\s*([a-zA-Z_][a-zA-Z0-9_]*)(?=\\s*\\()",
+                    "captures": {
+                        "1": {
+                            "name": "variable.other.object.qml"
+                        },
+                        "2": {
+                            "name": "entity.name.function.qml"
+                        }
+                    }
+                },
+                {
+                    "name": "constant.other.unit.qml",
+                    "match": "\\b\\d+(?:\\.\\d+)?\\s*(px|pt|em|rem|vw|vh|vmin|vmax|%|in|cm|mm|pc|ex|ch|lh|deg|rad|grad|turn|s|ms|Hz|kHz|dpi|dpcm|dppx)\\b"
+                },
+                {
+                    "name": "constant.other.special-value.qml",
+                    "match": "\\b(undefined|null|true|false|NaN|Infinity)\\b"
+                },
+                {
+                    "name": "constant.numeric.negative-infinity.qml",
+                    "match": "-Infinity\\b"
+                },
+                {
+                    "name": "meta.property-binding.qml",
+                    "begin": "\\b([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)\\s*:",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "variable.other.property.qml"
+                        }
+                    },
+                    "end": "(?=[;}]|$)",
+                    "patterns": [
+                        {
+                            "include": "#all-patterns"
+                        }
+                    ]
+                }
+            ]
+        },
+        "signal-handlers": {
+            "patterns": [
+                {
+                    "name": "meta.signal-handler.qml",
+                    "match": "\\b(on[A-Z][a-zA-Z0-9_]*)\\s*(?=:)",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.signal-handler.qml"
+                        }
+                    }
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "meta.function.qml",
+                    "begin": "\\b(function)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.declaration.function.qml"
+                        },
+                        "2": {
+                            "name": "entity.name.function.qml"
+                        }
+                    },
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "name": "variable.parameter.function.qml",
+                            "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                        },
+                        {
+                            "name": "punctuation.separator.parameter.qml",
+                            "match": ","
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.function.anonymous.qml",
+                    "begin": "\\b(function)\\s*\\(",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.declaration.function.qml"
+                        }
+                    },
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "name": "variable.parameter.function.qml",
+                            "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                        },
+                        {
+                            "name": "punctuation.separator.parameter.qml",
+                            "match": ","
+                        }
+                    ]
+                }
+            ]
+        },
+        "built-in-functions": {
+            "patterns": [
+                {
+                    "name": "support.function.qml.translation.qml",
+                    "match": "\\b(qsTr|qsTranslate|qsTrId|qsTrNoOp|qsTrIdNoOp)(?=\\s*\\()"
+                },
+                {
+                    "name": "support.function.qml.global.qml",
+                    "match": "\\b(qsrand|qsRand|print|gc)(?=\\s*\\(|\\b)"
+                },
+                {
+                    "name": "support.function.qml.qt.qml",
+                    "match": "\\bQt\\s*\\.\\s*(quit|exit|callLater|createComponent|createQmlObject|formatDate|formatDateTime|formatTime|hsla|hsva|lighter|darker|tint|binding|colorEqual|fontFamilies|include|isQtObject|locale|matrix4x4|md5|openUrlExternally|point|qmlTypeOf|quaternion|rect|resolvedUrl|rgba|size|vector2d|vector3d|vector4d|btoa|atob|platform|application|inputMethod|styleHints|createTimer|labs|uiLanguage)(?=\\s*\\()"
+                },
+                {
+                    "name": "support.function.console.qml",
+                    "match": "\\bconsole\\s*\\.\\s*(log|warn|error|info|debug|trace|count|time|timeEnd|profile|profileEnd|assert|dir|dirxml|group|groupCollapsed|groupEnd|clear|exception|table|countReset|timeLog|memory|timestamp)(?=\\s*\\()"
+                },
+                {
+                    "name": "support.function.javascript.qml",
+                    "match": "\\b(parseInt|parseFloat|isNaN|isFinite|encodeURI|encodeURIComponent|decodeURI|decodeURIComponent|escape|unescape|eval)(?=\\s*\\()"
+                },
+                {
+                    "name": "support.function.math.qml",
+                    "match": "\\bMath\\s*\\.\\s*(abs|acos|asin|atan|atan2|ceil|cos|exp|floor|log|max|min|pow|random|round|sin|sqrt|tan|sign|trunc|cbrt|expm1|log1p|log10|log2|fround|clz32|imul|acosh|asinh|atanh|cosh|sinh|tanh|hypot)(?=\\s*\\()"
+                },
+                {
+                    "name": "constant.other.math.qml",
+                    "match": "\\bMath\\s*\\.\\s*(E|LN2|LN10|LOG2E|LOG10E|PI|SQRT1_2|SQRT2)\\b"
                 }
             ]
         },
@@ -52,8 +434,12 @@
                     "end": "\"",
                     "patterns": [
                         {
-                            "match": "\\\\[\"\\\\/bfnrt]",
-                            "name": "constant.character.escape.qml"
+                            "name": "constant.character.escape.qml",
+                            "match": "\\\\(?:[\"'\\\\nrtbfav0/]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|u\\{[0-9a-fA-F]+\\}|[0-7]{1,3})"
+                        },
+                        {
+                            "name": "invalid.illegal.escape.qml",
+                            "match": "\\\\."
                         }
                     ]
                 },
@@ -63,8 +449,37 @@
                     "end": "'",
                     "patterns": [
                         {
-                            "match": "\\\\[\"\\\\/bfnrt]",
-                            "name": "constant.character.escape.qml"
+                            "name": "constant.character.escape.qml",
+                            "match": "\\\\(?:[\"'\\\\nrtbfav0/]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|u\\{[0-9a-fA-F]+\\}|[0-7]{1,3})"
+                        },
+                        {
+                            "name": "invalid.illegal.escape.qml",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.template.qml",
+                    "begin": "`",
+                    "end": "`",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.qml",
+                            "match": "\\\\(?:[`\\\\nrtbfav0/]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|u\\{[0-9a-fA-F]+\\}|[0-7]{1,3})"
+                        },
+                        {
+                            "name": "meta.template.expression.qml",
+                            "begin": "\\$\\{",
+                            "end": "\\}",
+                            "patterns": [
+                                {
+                                    "include": "source.js"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "invalid.illegal.escape.qml",
+                            "match": "\\\\."
                         }
                     ]
                 }
@@ -73,8 +488,20 @@
         "numbers": {
             "patterns": [
                 {
-                    "name": "constant.numeric.qml",
-                    "match": "\\b(0[xX][0-9a-fA-F]+|\\d+(\\.\\d+)?([eE][+-]?\\d+)?)\\b"
+                    "name": "constant.numeric.hex.qml",
+                    "match": "\\b0[xX][0-9a-fA-F]+(?:[lL]|[uU]|[uU][lL]|[lL][uU])?\\b"
+                },
+                {
+                    "name": "constant.numeric.binary.qml",
+                    "match": "\\b0[bB][01]+(?:[lL]|[uU]|[uU][lL]|[lL][uU])?\\b"
+                },
+                {
+                    "name": "constant.numeric.octal.qml",
+                    "match": "\\b0[oO][0-7]+(?:[lL]|[uU]|[uU][lL]|[lL][uU])?\\b"
+                },
+                {
+                    "name": "constant.numeric.decimal.qml",
+                    "match": "\\b(?:(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?[fFdD]?|\\b\\.\\d+(?:[eE][+-]?\\d+)?[fFdD]?)\\b"
                 }
             ]
         },
@@ -82,27 +509,63 @@
             "patterns": [
                 {
                     "name": "keyword.control.qml",
-                    "match": "\\b(import|as|on)\\b"
+                    "match": "\\b(import|as|on|if|else|for|while|do|switch|case|default|break|continue|return|try|catch|finally|throw|with|in|of|typeof|instanceof|new|delete|void|this|super|static|extends|implements|interface|package|private|protected|public|abstract|final|native|synchronized|transient|volatile|const|let|var|function|class|enum|export|from|yield|await|async|debugger)\\b"
                 },
                 {
-                    "name": "keyword.storage.qml",
-                    "match": "\\b(property|signal|slot|function|var|let|readonly|alias|default)\\b"
-                },
-                {
-                    "name": "keyword.constant.qml",
-                    "match": "\\b(true|false|null)\\b"
+                    "name": "keyword.other.qml",
+                    "match": "\\b(property|signal|slot|readonly|alias|default|pragma|required|component)\\b"
                 }
             ]
         },
-        "identifiers": {
+        "types": {
             "patterns": [
                 {
-                    "name": "entity.name.type.qml",
-                    "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+                    "name": "storage.type.primitive.qml",
+                    "match": "\\b(bool|color|date|double|enumeration|font|int|list|real|string|url|var|variant|vector2d|vector3d|vector4d|quaternion|matrix4x4|size|point|rect)\\b"
                 },
                 {
-                    "name": "variable.other.qml",
-                    "match": "\\b[a-z_][A-Za-z0-9_]*\\b"
+                    "name": "storage.type.javascript.qml",
+                    "match": "\\b(undefined|null|boolean|number|string|symbol|bigint|object|function)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.qml",
+                    "match": "\\b(true|false|null|undefined|NaN|Infinity)\\b"
+                },
+                {
+                    "name": "variable.language.qml",
+                    "match": "\\b(this|parent|children|anchors)\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.assignment.qml",
+                    "match": "=|\\+=|-=|\\*=|/=|%=|<<=|>>=|>>>=|&=|\\|=|\\^="
+                },
+                {
+                    "name": "keyword.operator.comparison.qml",
+                    "match": "===|!==|==|!=|<=|>=|<|>"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.qml",
+                    "match": "\\+\\+|--|\\+|-|\\*|/|%"
+                },
+                {
+                    "name": "keyword.operator.logical.qml",
+                    "match": "&&|\\|\\||!|\\?\\?"
+                },
+                {
+                    "name": "keyword.operator.bitwise.qml",
+                    "match": "<<|>>|>>>|&|\\||\\^|~"
+                },
+                {
+                    "name": "keyword.operator.ternary.qml",
+                    "match": "\\?|:"
                 }
             ]
         },
@@ -113,92 +576,259 @@
                     "match": "\\."
                 },
                 {
-                    "name": "punctuation.operator.assignment.qml",
-                    "match": "="
-                },
-                {
-                    "name": "punctuation.operator.comparison.qml",
-                    "match": "!=|==|<=|>=|<|>"
-                },
-                {
-                    "name": "punctuation.operator.arithmetic.qml",
-                    "match": "\\+\\+|\\-\\-|\\+|\\-|\\*|\\/|%"
-                },
-                {
-                    "name": "punctuation.operator.logical.qml",
-                    "match": "&&|\\|\\||!|~"
-                },
-                {
-                    "name": "punctuation.operator.bitwise.qml",
-                    "match": "\\^|&|\\|"
-                },
-                {
                     "name": "punctuation.terminator.qml",
                     "match": ";"
                 },
                 {
-                    "name": "punctuation.delimiter.qml",
+                    "name": "punctuation.separator.comma.qml",
                     "match": ","
-                },
-                {
-                    "name": "punctuation.accessor.qml",
-                    "match": "\\?"
-                },
-                {
-                    "name": "punctuation.separator.key-value.qml",
-                    "match": ":"
                 }
-            ],
-            "brackets": {
-                "patterns": [
-                    {
-                        "name": "punctuation.section.array.qml",
-                        "begin": "\\[",
-                        "end": "\\]",
-                        "patterns": [
-                            {
-                                "include": "#patterns"
-                            }
-                        ]
+            ]
+        },
+        "brackets": {
+            "patterns": [
+                {
+                    "name": "punctuation.definition.parameters.begin.qml",
+                    "match": "\\("
+                },
+                {
+                    "name": "punctuation.definition.parameters.end.qml",
+                    "match": "\\)"
+                },
+                {
+                    "name": "punctuation.definition.array.begin.qml",
+                    "match": "\\["
+                },
+                {
+                    "name": "punctuation.definition.array.end.qml",
+                    "match": "\\]"
+                },
+                {
+                    "name": "punctuation.definition.block.begin.qml",
+                    "match": "\\{"
+                },
+                {
+                    "name": "punctuation.definition.block.end.qml",
+                    "match": "\\}"
+                }
+            ]
+        },
+        "anchor-properties": {
+            "patterns": [
+                {
+                    "name": "variable.other.anchor.qml",
+                    "match": "\\b(anchors)\\.(top|bottom|left|right|horizontalCenter|verticalCenter|centerIn|fill|margins|leftMargin|rightMargin|topMargin|bottomMargin|horizontalCenterOffset|verticalCenterOffset|baseline|alignWhenCentered)\\b"
+                }
+            ]
+        },
+        "font-properties": {
+            "patterns": [
+                {
+                    "name": "variable.other.font.qml",
+                    "match": "\\b(font)\\.(family|pixelSize|pointSize|italic|bold|underline|strikeout|capitalization|letterSpacing|wordSpacing|weight|styleName|styleHint|hintingPreference|kerning|preferShaping)\\b"
+                }
+            ]
+        },
+        "color-properties": {
+            "patterns": [
+                {
+                    "name": "support.function.color.qml",
+                    "match": "\\b(Qt\\.(rgba|hsla|hsva|lighter|darker|tint|colorEqual))\\b"
+                },
+                {
+                    "name": "constant.other.color.qml",
+                    "match": "\\b(transparent|white|black|red|green|blue|cyan|magenta|yellow|gray|lightGray|darkGray|orange|pink|purple|brown|lightBlue|darkBlue|lightGreen|darkGreen|lightRed|darkRed|lightCyan|darkCyan|lightMagenta|darkMagenta|lightYellow|darkYellow)\\b"
+                },
+                {
+                    "name": "constant.numeric.color.hex.qml",
+                    "match": "#[0-9a-fA-F]{3,8}\\b"
+                }
+            ]
+        },
+        "states-transitions": {
+            "patterns": [
+                {
+                    "name": "keyword.control.state.qml",
+                    "match": "\\b(states|transitions|when|from|to|reversible)\\b"
+                },
+                {
+                    "name": "entity.name.type.state.qml",
+                    "match": "\\b(State|Transition|PropertyChanges|StateGroup|StateChangeScript|AnchorChanges|ParentChange|PropertyAction|NumberAnimation|ColorAnimation|RotationAnimation|ScaleAnimation|ParallelAnimation|SequentialAnimation|PauseAnimation|ScriptAction|PropertyAnimation|SmoothedAnimation|SpringAnimation|Vector3dAnimation|PathAnimation|AnchorAnimation|ParentAnimation)\\b"
+                }
+            ]
+        },
+        "gradients": {
+            "patterns": [
+                {
+                    "name": "entity.name.type.gradient.qml",
+                    "match": "\\b(Gradient|GradientStop|LinearGradient|RadialGradient|ConicalGradient)\\b"
+                },
+                {
+                    "name": "variable.other.gradient.qml",
+                    "match": "\\b(gradient|stops|position|color|source|angle|horizontalRadius|verticalRadius|centerRadius|focalRadius|centerX|centerY|focalX|focalY|spread|cached)\\b"
+                }
+            ]
+        },
+        "easing-curves": {
+            "patterns": [
+                {
+                    "name": "constant.other.easing.qml",
+                    "match": "\\b(Easing\\.(Linear|InQuad|OutQuad|InOutQuad|OutInQuad|InCubic|OutCubic|InOutCubic|OutInCubic|InQuart|OutQuart|InOutQuart|OutInQuart|InQuint|OutQuint|InOutQuint|OutInQuint|InSine|OutSine|InOutSine|OutInSine|InExpo|OutExpo|InOutExpo|OutInExpo|InCirc|OutCirc|InOutCirc|OutInCirc|InElastic|OutElastic|InOutElastic|OutInElastic|InBack|OutBack|InOutBack|OutInBack|InBounce|OutBounce|InOutBounce|OutInBounce|BezierSpline|Bezier))\\b"
+                }
+            ]
+        },
+        "special-properties": {
+            "patterns": [
+                {
+                    "name": "variable.other.anchor.qml",
+                    "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*(?:\\.[a-zA-Z_][a-zA-Z0-9_]*)*)(?=\\s*:)"
+                }
+            ]
+        },
+        "pragma-directives": {
+            "patterns": [
+                {
+                    "name": "meta.pragma.qml",
+                    "begin": "\\b(pragma)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.pragma.qml"
+                        }
                     },
-                    {
-                        "name": "punctuation.section.object.qml",
-                        "begin": "\\{",
-                        "end": "\\}",
-                        "patterns": [
-                            {
-                                "include": "#patterns"
-                            }
-                        ]
+                    "end": "$",
+                    "patterns": [
+                        {
+                            "name": "entity.name.pragma.qml",
+                            "match": "\\b(Singleton|ComponentBehavior|ListPropertyAssignBehavior|NativeMethodBehavior|ValueTypeBehavior|FunctionSignatureBehavior|strict|component|implicit|required|Strict|ImplicitBinding|RequiredProperty|FunctionSignature)\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "component-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.component.qml",
+                    "begin": "\\b(component)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.component.qml"
+                        }
                     },
-                    {
-                        "name": "punctuation.section.xml.qml",
-                        "begin": "<",
-                        "end": ">",
-                        "patterns": [
-                            {
-                                "include": "source.xml"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "properties": {
-                "patterns": [
-                    {
-                        "name": "entity.name.property.qml",
-                        "match": "\\b(?:id|property|signal|slot|function|readonly|alias|default)\\s+\\w+\\b"
+                    "end": "(?=\\s*[:;{])",
+                    "patterns": [
+                        {
+                            "name": "entity.name.component.qml",
+                            "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "enum-definitions": {
+            "patterns": [
+                {
+                    "name": "meta.enum.qml",
+                    "begin": "\\b(enum)\\s+",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.other.enum.qml"
+                        }
                     },
-                    {
-                        "name": "variable.parameter.qml",
-                        "match": "\\b\\w+\\s*:"
-                    },
-                    {
-                        "name": "variable.parameter.type.qml",
-                        "match": "\\b(?:int|real|string|bool|color|date|url|var|let)\\b"
-                    }
-                ]
-            }
+                    "end": "(?=\\s*{)",
+                    "patterns": [
+                        {
+                            "name": "entity.name.enum.qml",
+                            "match": "\\b[A-Z][a-zA-Z0-9_]*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "all-patterns": {
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#imports"
+                },
+                {
+                    "include": "#qml-elements"
+                },
+                {
+                    "include": "#javascript-blocks"
+                },
+                {
+                    "include": "#property-definitions"
+                },
+                {
+                    "include": "#property-bindings"
+                },
+                {
+                    "include": "#signal-handlers"
+                },
+                {
+                    "include": "#functions"
+                },
+                {
+                    "include": "#anchor-properties"
+                },
+                {
+                    "include": "#font-properties"
+                },
+                {
+                    "include": "#color-properties"
+                },
+                {
+                    "include": "#states-transitions"
+                },
+                {
+                    "include": "#gradients"
+                },
+                {
+                    "include": "#easing-curves"
+                },
+                {
+                    "include": "#special-properties"
+                },
+                {
+                    "include": "#pragma-directives"
+                },
+                {
+                    "include": "#component-definitions"
+                },
+                {
+                    "include": "#enum-definitions"
+                },
+                {
+                    "include": "#strings"
+                },
+                {
+                    "include": "#numbers"
+                },
+                {
+                    "include": "#keywords"
+                },
+                {
+                    "include": "#built-in-functions"
+                },
+                {
+                    "include": "#types"
+                },
+                {
+                    "include": "#constants"
+                },
+                {
+                    "include": "#operators"
+                },
+                {
+                    "include": "#punctuation"
+                },
+                {
+                    "include": "#brackets"
+                }
+            ]
         }
     }
 }

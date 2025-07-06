@@ -1,50 +1,44 @@
-# QML Syntax Highlighting for Visual Studio Code
+![QML Syntax Highlighting Preview](images/qml.png)
 
-![QML Syntax Highlighting Preview](images/preview.png)
+## Overview
 
-## Features
+Syntax highlighting extension for QML (Qt Modeling Language) files in Visual Studio Code.
 
-* Syntax highlighting for QML files
-* Supports various QML language features, including:
-* Comments
-* Strings
-* Numbers
-* Keywords
-* Identifiers
-* Punctuation
-* Brackets
-* Properties and parameters
+## Installation
 
-## Installation from GitHub
+### From VS Code Marketplace
+1. Open VS Code Extensions (Ctrl+Shift+X)
+2. Search for "QML Highlighting"
+3. Click Install
 
-1. Clone the repository to your local machine:
-   
-   ```
-   git clone https://github.com/fresh-milkshake/qml-vscode.git
-   ```
+### From Command Palette
+1. Open Command Palette (Ctrl+Shift+P)
+2. Type `ext install fresh-milkshake.qml-language-highlighting`
+3. Press Enter
 
-2. Copy the `qml-vscode` folder to your Visual Studio Code extensions folder:
-   
-   * On Windows: `%USERPROFILE%\.vscode\extensions`
-   * On macOS: `$HOME/.vscode/extensions`
-   * On Linux: `$HOME/.vscode/extensions`
+### From VSIX File
+1. Download `.vsix` from [Releases](https://github.com/fresh-milkshake/qml-vscode/releases)
+2. Command Palette → `Extensions: Install from VSIX...`
+3. Select downloaded file
 
-3. Restart Visual Studio Code.
+## What's Highlighted
 
-4. After installation, the extension will automatically highlight QML files.
+| Element         | Example                                  |
+| --------------- | ---------------------------------------- |
+| QML Components  | `Rectangle`, `Text`, `Button`            |
+| Properties      | `width: 100`, `anchors.centerIn: parent` |
+| JavaScript      | `{ return x * 2 }`                       |
+| Signal Handlers | `onClicked: { ... }`                     |
+| Types           | `property int count: 0`                  |
+| Functions       | `Qt.rgba(1, 0, 0, 1)`, `qsTr("Hello")` |
+| Comments        | `// Single line`, `/* Block */`          |
+| Strings         | `"Hello World"`, `'Single quotes'`       |
+| Numbers         | `42`, `3.14`, `0xFF`, `0b101`            |
 
-## Usage
+## Highlighting Example
 
-Simply open a QML file in Visual Studio Code, and the syntax highlighting will be automatically applied.
-
-## Contributing
-
-Contributions are welcome! If you encounter any issues or want to improve the extension, feel free to create an issue or submit a pull request on the [repository](https://github.com/fresh-milkshake/qml-vscode).
+![QML Syntax Highlighting Example](images/code.png)
 
 ## License
 
-This extension is licensed under the [MIT License](LICENSE).
-
-## Credits
-
-This extension is developed and maintained by [fresh-milkshake](https://github.com/fresh-milkshake).
+This project is licensed under the MIT License. See [LICENSE](LICENSE) file for details.

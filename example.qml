@@ -10,6 +10,18 @@ ApplicationWindow {
     visible: true
     title: qsTr("QML Syntax Highlighting Example")
 
+    // Example function to demonstrate QML function syntax
+    function incrementCounter() {
+        counter.text = parseInt(counter.text) + 1
+        console.log("Counter incremented to:", counter.text)
+    }
+
+    // Function to reset counter
+    function resetCounter() {
+        counter.text = "0"
+        console.log("Counter reset")
+    }
+
     // Arrange components vertically
     Column {
         anchors.centerIn: parent
@@ -29,8 +41,18 @@ ApplicationWindow {
             id: clickMeButton
             text: qsTr("Click me!")
             onClicked: {
-                // Increment counter text when button is clicked
-                counter.text = parseInt(counter.text) + 1
+                // Use the function to increment counter
+                incrementCounter()
+            }
+        }
+
+        // Reset button
+        Button {
+            id: resetButton
+            text: qsTr("Reset")
+            onClicked: {
+                // Use the function to reset counter
+                resetCounter()
             }
         }
 
@@ -52,6 +74,9 @@ ApplicationWindow {
         onSomeSignal: {
             // Log a message when a signal is received from the C++ object
             console.log("Signal received from C++ object")
+
+            // Use the function to increment counter when a signal is received
+            incrementCounter()
         }
     }
 }

@@ -1,8 +1,8 @@
 {
-    "name": "qml-lang",
-    "displayName": "QML",
+    "name": "qml-language-highlighting",
+    "displayName": "QML Highlighting",
     "description": "Syntax highlighting for QML Language",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.48.0"
     },
@@ -10,8 +10,12 @@
         "Programming Languages"
     ],
     "icon": "images/qml.png",
-    "repository": "https://github.com/fresh-milkshake/qml-lang",
-    "publisher": "Fresh Milkshake",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fresh-milkshake/qml-vscode.git"
+    },
+    "publisher": "fresh-milkshake",
+    "license": "MIT",
     "contributes": {
         "languages": [
             {
